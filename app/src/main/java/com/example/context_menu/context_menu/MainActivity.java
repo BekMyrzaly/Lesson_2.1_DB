@@ -1,4 +1,4 @@
-package com.example.context_menu;
+package com.example.context_menu.context_menu;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.context_menu.R;
 
 public class MainActivity extends Activity {
 
