@@ -66,6 +66,18 @@
         android:layout_marginTop="10dp"
         android:hint="enter phone" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#03DAC5"
+        android:textStyle="bold"
+        android:text="Choose serials:"/>
+
+    <Spinner
+        android:id="@+id/groupSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <Button
         android:id="@+id/btn_submit"
         android:layout_width="match_parent"

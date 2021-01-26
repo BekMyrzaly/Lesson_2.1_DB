@@ -8,12 +8,17 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.context_menu.R;
 import com.example.context_menu.database.StoreDatabase;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.example.context_menu.database.StoreDatabase.COLUMN_USER_EMAIL;
 import static com.example.context_menu.database.StoreDatabase.COLUMN_USER_NAME;
@@ -26,6 +31,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
 
     private StoreDatabase storeDb;
     private SQLiteDatabase sqdb;
+    List<String> list = new ArrayList<String>();
 
     EditText et_user_name;
     EditText et_email;
@@ -33,6 +39,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     EditText et_phone;
     Button btn_submit;
     Button btn_login;
+    Spinner groupSpinner;
 
 
     @Override
@@ -40,15 +47,27 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
-        storeDb = new StoreDatabase(this);
-        sqdb = storeDb.getWritableDatabase();
-
         et_user_name = findViewById(R.id.et_user_name);
         et_email = findViewById(R.id.et_email);
         et_password = findViewById(R.id.et_password);
         et_phone = findViewById(R.id.et_phone);
         btn_submit = findViewById(R.id.btn_submit);
         btn_login = findViewById(R.id.btn_login);
+        groupSpinner = findViewById(R.id.groupSpinner);
+
+        storeDb = new StoreDatabase(this);
+        sqdb = storeDb.getWritableDatabase();
+
+
+        list.add("Comedy");
+        list.add("Fantasy");
+        list.add("Action");
+        list.add("Drama");
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item,list);
+        groupSpinner.setAdapter(adapter);
+
 
         btn_submit.setOnClickListener(this);
         btn_login.setOnClickListener(this);

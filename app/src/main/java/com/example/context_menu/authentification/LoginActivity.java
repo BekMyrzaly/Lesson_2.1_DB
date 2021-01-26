@@ -10,11 +10,14 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.context_menu.R;
 import com.example.context_menu.database.StoreDatabase;
+
+import java.util.ArrayList;
 
 import static com.example.context_menu.database.StoreDatabase.COLUMN_USER_EMAIL;
 import static com.example.context_menu.database.StoreDatabase.COLUMN_USER_NAME;
@@ -26,6 +29,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private StoreDatabase storeDb;
     private SQLiteDatabase sqdb;
+    private CheckBox yesCh, noCh;
 
     EditText et_email;
     EditText et_password;
@@ -39,11 +43,36 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         sqdb = storeDb.getWritableDatabase();
 
         et_email = findViewById(R.id.et_email);
+        yesCh = findViewById(R.id.check_yes);
+        noCh = findViewById(R.id.check_no);
         et_password = findViewById(R.id.et_password);
         btn_submit = findViewById(R.id.btn_submit);
+        btn_submit = new ArrayList<>();
 
         btn_submit.setOnClickListener(this);
+
+        yesCh.setOnClickListener(new.View.OnClickListener()){
+            @Override
+            public void onClick(View v){
+                if (yesCh.isChecked())
+                    btn_submit.add("Yes");
+                else
+                    btn_submit.remove("Yes");
+            }
+        }
+
+        noCh.setOnClickListener(new.View.OnClickListener()){
+            @Override
+            public void onClick(View v){
+                if (noCh.isChecked())
+                    btn_submit.add("NO");
+                else
+                    btn_submit.remove("NO");
+            }
+        }
     }
+
+
     @Override
     public void onClick(View view) {
 
